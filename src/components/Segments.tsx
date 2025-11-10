@@ -47,7 +47,7 @@ export function SplineScene({ scene, className, forceBlack = true, targetObjectN
       const paintBlack = (mat: ThreeMaterial | ThreeMaterial[]) => {
         try {
           if (!mat) return
-          
+
           // alguns materiais podem ser arrays
           if (Array.isArray(mat)) {
             mat.forEach(m => {
@@ -57,7 +57,7 @@ export function SplineScene({ scene, className, forceBlack = true, targetObjectN
             })
             return
           }
-          
+
           if (mat.color) mat.color.set(0x000000)
           if (mat.emissive) mat.emissive.set(0x000000)
           // reduzir brilho/specular
@@ -111,7 +111,7 @@ export function SplineScene({ scene, className, forceBlack = true, targetObjectN
 
 export function Segments() {
   return (
-    <Card className="w-full h-screen bg-gray-50 dark:bg-slate-950 relative overflow-hidden border-0 transition-colors duration-300">
+    <Card className="w-full min-h-screen lg:h-screen bg-gray-50 dark:bg-slate-950 relative overflow-hidden border-0 transition-colors duration-300">
       {/* Grid de fundo */}
       <div className="absolute inset-0 opacity-5 dark:opacity-10">
         <div className="absolute inset-0" style={{
@@ -122,15 +122,15 @@ export function Segments() {
       </div>
 
       {/* Elementos decorativos */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-400/10 dark:bg-cyan-500/5 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-400/10 dark:bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
-      
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-400/10 dark:bg-cyan-500/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-400/10 dark:bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+
       <div className="flex h-full flex-col lg:flex-row">
         {/* Left content */}
-        <div className="flex-1 p-8 lg:p-16 relative z-10 flex flex-col justify-center">
+        <div className="flex-1 p-6 sm:p-8 lg:p-16 relative z-10 flex flex-col justify-center">
 
           {/* Título */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
             <span className="text-gray-900 dark:text-white">Inovação em </span>
             <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               Tecnologia
@@ -138,51 +138,51 @@ export function Segments() {
           </h1>
 
           {/* Linha decorativa */}
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-600 to-transparent mb-6"></div>
-          
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-600 to-transparent mb-4 sm:mb-6"></div>
+
           {/* Descrições */}
-          <div className="space-y-4 max-w-lg">
-            <p className="text-lg text-gray-800 dark:text-gray-300 leading-relaxed">
-              A <span className="text-cyan-600 dark:text-cyan-400 font-semibold">LT Cloud</span> é uma empresa líder em <span className="text-cyan-600 dark:text-cyan-400 font-semibold">tecnologia e inovação</span>, especializada em criar experiências digitais imersivas e soluções de alto desempenho.
+          <div className="space-y-3 sm:space-y-4 max-w-lg">
+            <p className="text-base sm:text-lg text-gray-800 dark:text-gray-300 leading-relaxed">
+              A <span className="text-cyan-600 dark:text-cyan-400 font-semibold">LT Cloud</span> transforma ideias em soluções digitais de alto desempenho para empresas que buscam excelência tecnológica.
             </p>
-            
-            <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
               Utilizamos as tecnologias mais modernas do mercado, para transformar ideias em produtos digitais que impressionam e entregam resultados reais.
             </p>
 
-            <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
-              Nossa expertise em <span className="text-cyan-600 dark:text-cyan-400 font-semibold">desenvolvimento web</span>, <span className="text-cyan-600 dark:text-cyan-400 font-semibold">aplicações mobile</span> e <span className="text-cyan-600 dark:text-cyan-400 font-semibold">cloud computing</span> permite entregar soluções escaláveis e inovadoras para empresas de diversos segmentos.
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+              Nossa expertise em <span className="text-cyan-600 dark:text-cyan-400 font-semibold">desenvolvimento web</span>, <span className="text-cyan-600 dark:text-cyan-400 font-semibold">aplicações mobile</span> e <span className="text-cyan-600 dark:text-cyan-400 font-semibold">cloud computing</span> permite entregar soluções escaláveis e inovadoras.
             </p>
           </div>
 
           {/* Stats rápidos */}
-          <div className="grid grid-cols-3 gap-6 mt-8 max-w-lg">
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-6 sm:mt-8 max-w-lg">
             <div className="relative group">
-              <div className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                 10+
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Anos</div>
+              <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">Anos</div>
               <div className="absolute -inset-2 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10"></div>
             </div>
             <div className="relative group">
-              <div className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                 50+
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Projetos</div>
+              <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">Projetos</div>
               <div className="absolute -inset-2 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10"></div>
             </div>
             <div className="relative group">
-              <div className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                 100%
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Dedicação</div>
+              <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">Dedicação</div>
               <div className="absolute -inset-2 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10"></div>
             </div>
           </div>
         </div>
 
         {/* Right content - 3D Scene */}
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-64 sm:h-96 lg:h-full">
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"

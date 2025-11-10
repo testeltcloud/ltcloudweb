@@ -161,6 +161,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
