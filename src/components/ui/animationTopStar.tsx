@@ -592,8 +592,11 @@ class WebGLRenderer {
 
   updateCanvasSize(width: number, height: number): void {
     const gl = this.gl
-    this.canvas.width = Math.floor(width)
-    this.canvas.height = Math.floor(height)
+    // Limitar resolução em mobile para melhor performance
+    const isMobile = window.innerWidth < 768
+    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5)
+    this.canvas.width = Math.floor(width / dpr)
+    this.canvas.height = Math.floor(height / dpr)
     this.canvas.style.width = Math.floor(width / (window.devicePixelRatio || 1)) + 'px'
     this.canvas.style.height = Math.floor(height / (window.devicePixelRatio || 1)) + 'px'
     gl.viewport(0, 0, this.canvas.width, this.canvas.height)
@@ -635,15 +638,14 @@ const useShaderBackground = (isDarkMode: boolean) => {
 
   const resize = () => {
     if (resizeTimeout.current) clearTimeout(resizeTimeout.current)
-    
+
     resizeTimeout.current = window.setTimeout(() => {
       const canvas = canvasRef.current
       if (!canvas || !rendererRef.current) return
-      const dpr = Math.min(window.devicePixelRatio || 1, 2) // Limitar DPR para performance
-      const w = Math.floor(window.innerWidth * dpr)
-      const h = Math.floor(window.innerHeight * dpr)
+      const w = window.innerWidth
+      const h = window.innerHeight
       rendererRef.current.updateCanvasSize(w, h)
-    }, 150) // Debounce
+    }, 200) // Debounce aumentado para evitar travamentos
   }
 
   const loop = (t: number) => {
@@ -716,15 +718,19 @@ export default function Hero() {
       {/* Canvas WebGL - renderiza apenas no dark mode */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full object-contain touch-none opacity-0 dark:opacity-100"
-        style={{ background: 'transparent', pointerEvents: 'none' }}
+        className="absolute inset-0 w-full h-full object-contain touch-none opacity-0 dark:opacity-100 transition-opacity duration-700"
+        style={{
+          background: 'transparent',
+          pointerEvents: 'none',
+          willChange: theme === 'dark' ? 'transform' : 'auto'
+        }}
       />
       
       {/* Background light mode - estático, sem animações pesadas */}
-      <div className="absolute inset-0 opacity-100 dark:opacity-0">
+      <div className="absolute inset-0 opacity-100 dark:opacity-0 transition-opacity duration-700">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-100"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
       </div>
       
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-200/20 dark:to-black/20 z-[5]" />

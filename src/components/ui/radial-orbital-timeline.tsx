@@ -94,7 +94,7 @@ export default function RadialOrbitalTimeline({
     });
   }, [getRelatedItems]);
 
-  // Otimização: usar requestAnimationFrame ao invés de setInterval
+  // Otimização: usar requestAnimationFrame com throttle melhorado
   useEffect(() => {
     if (!autoRotate) return;
 
@@ -105,10 +105,11 @@ export default function RadialOrbitalTimeline({
 
       const deltaTime = currentTime - lastTimeRef.current;
 
-      if (deltaTime >= 50) {
+      // Throttle ajustado - 60ms para suavidade em mobile
+      if (deltaTime >= 60) {
         setRotationAngle((prev) => {
-          const newAngle = (prev + 0.3) % 360;
-          return Number(newAngle.toFixed(3));
+          const newAngle = (prev + 0.25) % 360;
+          return Number(newAngle.toFixed(2));
         });
         lastTimeRef.current = currentTime;
       }
@@ -162,30 +163,30 @@ export default function RadialOrbitalTimeline({
 
   return (
     <div
-      className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-950 overflow-hidden transition-colors duration-300 py-8 sm:py-0"
+      className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-950 transition-colors duration-300 py-8 sm:py-12 pb-32 sm:pb-48 relative z-20"
       ref={containerRef}
       onClick={handleContainerClick}
     >
       <div className="relative w-full max-w-4xl h-full min-h-[600px] sm:min-h-[700px] flex items-center justify-center px-4">
         <div
-          className="absolute w-full h-full flex items-center justify-center"
+          className="absolute w-full h-full flex items-center justify-center z-10"
           ref={orbitRef}
           style={{
-            perspective: "1000px",
+            perspective: isMobile ? "800px" : "1000px",
           }}
         >
           {/* Centro orbital com tema adaptado - tamanho responsivo */}
-          <div className="absolute w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-cyan-500 via-blue-500 to-cyan-600 dark:from-cyan-400 dark:via-blue-400 dark:to-cyan-500 animate-pulse flex items-center justify-center z-10">
-            <div className="absolute w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-cyan-400/30 dark:border-cyan-300/20 animate-ping opacity-70"></div>
+          <div className="absolute w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-cyan-500 via-blue-500 to-cyan-600 dark:from-cyan-400 dark:via-blue-400 dark:to-cyan-500 flex items-center justify-center z-50" style={{ animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}>
+            <div className="absolute w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-cyan-400/30 dark:border-cyan-300/20 opacity-70" style={{ animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }}></div>
             <div
-              className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-cyan-400/20 dark:border-cyan-300/10 animate-ping opacity-50"
-              style={{ animationDelay: "0.5s" }}
+              className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-cyan-400/20 dark:border-cyan-300/10 opacity-50"
+              style={{ animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite 0.5s' }}
             ></div>
             <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white dark:bg-cyan-50 backdrop-blur-md shadow-lg shadow-cyan-500/50"></div>
           </div>
 
           {/* Órbita - tamanho responsivo */}
-          <div className="absolute w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full border border-cyan-300/30 dark:border-cyan-600/20"></div>
+          <div className="absolute w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full border border-cyan-300/30 dark:border-cyan-600/20 z-10"></div>
 
           {timelineData.map((item, index) => {
             const position = calculateNodePosition(index, timelineData.length);
@@ -204,7 +205,7 @@ export default function RadialOrbitalTimeline({
               <div
                 key={item.id}
                 ref={(el) => { nodeRefs.current[item.id] = el; }}
-                className="absolute transition-all duration-700 cursor-pointer"
+                className="absolute transition-all duration-500 cursor-pointer will-change-transform"
                 style={nodeStyle}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -263,9 +264,9 @@ export default function RadialOrbitalTimeline({
                   {item.title}
                 </div>
 
-                {/* Card expandido - responsivo */}
+                {/* Card expandido - responsivo com z-index alto */}
                 {isExpanded && (
-                  <Card className="absolute top-16 sm:top-20 left-1/2 -translate-x-1/2 w-72 sm:w-80 md:w-96 max-w-[calc(100vw-2rem)] bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-cyan-300 dark:border-cyan-700 shadow-xl shadow-cyan-500/20 dark:shadow-cyan-500/10 overflow-visible transition-colors duration-300">
+                  <Card className="absolute top-16 sm:top-20 left-1/2 -translate-x-1/2 w-72 sm:w-80 md:w-96 max-w-[calc(100vw-2rem)] bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-cyan-300 dark:border-cyan-700 shadow-2xl shadow-cyan-500/30 dark:shadow-cyan-500/20 overflow-visible transition-all duration-300 z-[250]">
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-cyan-500 dark:bg-cyan-400"></div>
                     <CardHeader className="pb-2 px-4 sm:px-6">
                       <div className="flex justify-between items-center flex-wrap gap-2">
