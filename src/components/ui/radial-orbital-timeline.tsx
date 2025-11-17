@@ -94,9 +94,11 @@ export default function RadialOrbitalTimeline({
     });
   }, [getRelatedItems]);
 
-  // Otimização: usar requestAnimationFrame com throttle melhorado
+  // Otimização: usar requestAnimationFrame com throttle otimizado
   useEffect(() => {
     if (!autoRotate) return;
+
+    let frameCount = 0;
 
     const animate = (currentTime: number) => {
       if (lastTimeRef.current === 0) {
@@ -105,12 +107,18 @@ export default function RadialOrbitalTimeline({
 
       const deltaTime = currentTime - lastTimeRef.current;
 
-      // Throttle ajustado - 60ms para suavidade em mobile
-      if (deltaTime >= 60) {
-        setRotationAngle((prev) => {
-          const newAngle = (prev + 0.25) % 360;
-          return Number(newAngle.toFixed(2));
-        });
+      // Throttle aumentado - 100ms para evitar travamento + skip de frames
+      if (deltaTime >= 100) {
+        frameCount++;
+
+        // Atualizar a cada 2 frames (ainda mais suave)
+        if (frameCount % 2 === 0) {
+          setRotationAngle((prev) => {
+            const newAngle = (prev + 0.2) % 360;
+            return Number(newAngle.toFixed(1));
+          });
+        }
+
         lastTimeRef.current = currentTime;
       }
 
@@ -124,6 +132,7 @@ export default function RadialOrbitalTimeline({
         cancelAnimationFrame(animationFrameRef.current);
       }
       lastTimeRef.current = 0;
+      frameCount = 0;
     };
   }, [autoRotate]);
 
