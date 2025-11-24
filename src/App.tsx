@@ -18,7 +18,7 @@ function App() {
     document.documentElement.classList.add('dark');
 
     // Terminar loading após 5 segundos
-    setTimeout(() => setLoading(false), 5000);
+    // setTimeout(() => setLoading(false), 5000);
   }, []);
 
   return (
