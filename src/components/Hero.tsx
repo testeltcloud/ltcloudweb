@@ -6,10 +6,10 @@ import Hero from "./ui/animationTopStar";
 const HeroDemo: React.FC = () => {
 
   return (
-    <div className="w-full">
+    // <div className="w-full">
       <Hero />
       
-    </div>
+    // </div>
   );
 };
 

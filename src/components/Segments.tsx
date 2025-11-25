@@ -167,7 +167,7 @@ export function Segments() {
           </div>
 
           {/* Stats rápidos */}
-          <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-6 sm:mt-8 max-w-xl">
+          {/* <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-6 sm:mt-8 max-w-xl">
             <div className="relative group">
               <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                 10+
@@ -189,7 +189,7 @@ export function Segments() {
               <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">Dedicação</div>
               <div className="absolute -inset-2 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Robô 3D - direita */}

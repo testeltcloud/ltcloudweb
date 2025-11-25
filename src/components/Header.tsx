@@ -166,13 +166,14 @@ export default function Header() {
     <header className="fixed w-full bg-slate-950/95 backdrop-blur-md shadow-lg z-50 border-b border-slate-800">
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo */}
-        <div className="relative group">
-          <h1 className="text-2xl font-bold transition-transform duration-300 group-hover:scale-105">
-            <span className="text-white">LT</span>
-            <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent"> Cloud</span>
-          </h1>
+        <a href="#home" className="relative group bg-white rounded-md">
+          <img
+            src="/ltcloud.png"
+            alt="LT Cloud"
+            className="h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+          />
           <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-600 to-blue-600 group-hover:w-full transition-all duration-300"></div>
-        </div>
+        </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
