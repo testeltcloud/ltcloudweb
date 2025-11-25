@@ -2,6 +2,9 @@
   command = "npm install --legacy-peer-deps && npm run build"
   publish = "dist"
 
+[context.production]
+  branch = "teste"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
