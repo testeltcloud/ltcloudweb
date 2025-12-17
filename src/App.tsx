@@ -20,10 +20,13 @@ const ContactForm = lazy(() => import("./components/ContactForm"));
 const WhatsAppWidget = lazy(() => import("./components/WhatsAppWidget"));
 const CookieConsent = lazy(() => import("./components/CookieConsent"));
 const Footer = lazy(() => import("./components/Footer"));
+const Team = lazy(() => import("./components/Team"));
+const CompanyAbout = lazy(() => import("./components/CompanyAbout"));
 
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import ScrollProgress from "./components/ui/ScrollProgress";
 import BackToTop from "./components/ui/BackToTop";
+import SkipToContent from "./components/ui/SkipToContent";
 
 function App() {
   // Ensure dark mode is active
@@ -33,11 +36,12 @@ function App() {
 
   return (
     <ErrorBoundary>
+      <SkipToContent />
       <div className="bg-slate-950 min-h-screen">
         <ScrollProgress />
         <GoogleAnalytics />
         <Header />
-        <main>
+        <main id="main">
           <Hero />
           <Segments />
           <Services />
@@ -52,6 +56,8 @@ function App() {
             <Portfolio />
             <HowItWorks />
             <ClientLogos />
+            <CompanyAbout />
+            <Team />
             <About />
             <Timeline />
             <Testimonials />

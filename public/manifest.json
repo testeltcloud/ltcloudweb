@@ -1,0 +1,29 @@
+{
+    "name": "LT Cloud",
+    "short_name": "LT Cloud",
+    "description": "Software House especializada em desenvolvimento de aplicativos e soluções cloud",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0f",
+    "theme_color": "#06b6d4",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/ltcloud.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/ltcloud.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "business",
+        "productivity"
+    ],
+    "lang": "pt-BR"
+}

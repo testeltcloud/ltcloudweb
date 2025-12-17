@@ -253,11 +253,3 @@ const CookieConsent = () => {
 };
 
 export default CookieConsent;
-
-// Adicionar tipo para window.gtag
-declare global {
-  interface Window {
-    gtag?: (command: string, ...args: any[]) => void;
-    dataLayer?: any[];
-  }
-}
