@@ -89,7 +89,7 @@ export default function About() {
         </div>
 
         {/* CTA Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -114,7 +114,7 @@ export default function About() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
     </section>

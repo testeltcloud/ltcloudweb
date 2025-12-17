@@ -238,7 +238,7 @@ export default function Hero() {
   const canvasRef = useShaderBackground()
 
   return (
-    <section id="home" className="relative w-full h-screen overflow-hidden bg-slate-950">
+    <section id="home" className="relative w-full h-screen overflow-hidden bg-slate-950 scroll-mt-16">
       {/* Canvas WebGL - animação de fundo */}
       <canvas
         ref={canvasRef}
@@ -266,8 +266,15 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-[5]" />
 
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white px-6 pt-20">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white px-6 mt-20 pt-16" >
         <div className="text-center space-y-10 max-w-6xl mx-auto">
+          {/* Tagline Superior */}
+          <div className="inline-block">
+            <span className="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-300 text-sm md:text-base font-semibold backdrop-blur-sm">
+              Software house para negócios de futuro
+            </span>
+          </div>
+
           <div className="space-y-4">
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold">
               <span className="bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent">Inovação &</span>
@@ -279,17 +286,17 @@ export default function Hero() {
           <div className="w-40 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto" />
           <div className="max-w-4xl mx-auto backdrop-blur-sm bg-black/10 rounded-2xl p-6 border border-white/5">
             <p className="text-xl md:text-2xl lg:text-3xl text-cyan-50/90 font-light leading-relaxed">
-              A LT Cloud transforma ideias em soluções digitais de alto desempenho para empresas que buscam excelência tecnológica.
+              Somos uma empresa de desenvolvimento de aplicativos, sistemas, plataformas de pagamento e soluções com inteligência artificial que transformam dados em ferramentas para crescer.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mt-14">
+          {/* <div className="flex flex-col sm:flex-row gap-6 justify-center mt-14">
             <a href="#services" className="px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-semibold text-xl transition-transform duration-300 hover:scale-105 shadow-xl shadow-cyan-500/40">
               Nossos Serviços
             </a>
-            <a href="#contact" className="px-10 py-5 bg-cyan-500/10 border border-cyan-300/30 text-cyan-100 rounded-xl font-semibold text-xl transition-transform duration-300 hover:scale-105 backdrop-blur-md">
-              Entre em Contato
+            <a href="#contato" className="px-10 py-5 bg-cyan-500/10 border border-cyan-300/30 text-cyan-100 rounded-xl font-semibold text-xl transition-transform duration-300 hover:scale-105 backdrop-blur-md">
+              Fale Conosco
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
 {/* 

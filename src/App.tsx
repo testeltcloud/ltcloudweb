@@ -1,53 +1,78 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect } from "react";
 
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import { Segments } from "./components/Segments";
 import Services from "./components/Services";
-import About from "./components/About";
-import Timeline from "./components/Timeline";
-import Testimonials from "./components/Testimonials";
-import Footer from "./components/Footer";
 import { Loader } from "./components/Loader";
+import ErrorBoundary from "./components/ErrorBoundary";
+
+// Lazy load components below the fold
+const WhatWeDevelop = lazy(() => import("./components/WhatWeDevelop"));
+const IndustrySegments = lazy(() => import("./components/IndustrySegments"));
+const Portfolio = lazy(() => import("./components/Portfolio"));
+const HowItWorks = lazy(() => import("./components/HowItWorks"));
+const ClientLogos = lazy(() => import("./components/ClientLogos"));
+const About = lazy(() => import("./components/About"));
+const Timeline = lazy(() => import("./components/Timeline"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const ContactForm = lazy(() => import("./components/ContactForm"));
+const WhatsAppWidget = lazy(() => import("./components/WhatsAppWidget"));
+const CookieConsent = lazy(() => import("./components/CookieConsent"));
+const Footer = lazy(() => import("./components/Footer"));
+const Team = lazy(() => import("./components/Team"));
+const CompanyAbout = lazy(() => import("./components/CompanyAbout"));
+
+import GoogleAnalytics from "./components/GoogleAnalytics";
+import ScrollProgress from "./components/ui/ScrollProgress";
+import BackToTop from "./components/ui/BackToTop";
+import SkipToContent from "./components/ui/SkipToContent";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
+  // Ensure dark mode is active
   useEffect(() => {
-    // Forçar tema dark
     document.documentElement.classList.add('dark');
-
-    // Terminar loading após 5 segundos
-    setTimeout(() => setLoading(false), 5000);
   }, []);
 
   return (
-    <div className="bg-slate-950">
-      {/* Loader - sempre renderizado até terminar */}
-      {loading && (
-        <div className="fixed inset-0 z-[9999] bg-slate-950">
-          <Loader />
-        </div>
-      )}
-
-      {/* Conteúdo - sempre renderizado, mas invisível durante loading */}
-      <div
-        className={`transition-opacity duration-700 ${
-          loading ? 'opacity-0 invisible' : 'opacity-100 visible'
-        }`}
-      >
+    <ErrorBoundary>
+      <SkipToContent />
+      <div className="bg-slate-950 min-h-screen">
+        <ScrollProgress />
+        <GoogleAnalytics />
         <Header />
-        <main>
+        <main id="main">
           <Hero />
           <Segments />
           <Services />
-          <About />
-          <Timeline />
-          <Testimonials />
+
+          <Suspense fallback={
+            <div className="flex items-center justify-center py-20">
+              <Loader />
+            </div>
+          }>
+            <WhatWeDevelop />
+            <IndustrySegments />
+            <Portfolio />
+            <HowItWorks />
+            <ClientLogos />
+            <CompanyAbout />
+            <Team />
+            <About />
+            <Timeline />
+            <Testimonials />
+            <ContactForm />
+          </Suspense>
         </main>
-        <Footer />
+
+        <BackToTop />
+        <Suspense fallback={null}>
+          <Footer />
+          <WhatsAppWidget />
+          <CookieConsent />
+        </Suspense>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 }
 
