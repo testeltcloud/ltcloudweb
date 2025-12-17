@@ -143,7 +143,7 @@ export function Segments() {
           {/* Título */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6">
             <span className="text-gray-900 dark:text-white">Inovação em </span>
-            <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
               Tecnologia
             </span>
           </h1>

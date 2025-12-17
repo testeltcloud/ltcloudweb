@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, X, Calendar } from 'lucide-react';
+import SpotlightCard from './ui/SpotlightCard';
 
 interface Project {
   id: number;
@@ -117,6 +118,7 @@ const Portfolio = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/10 via-transparent to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -125,7 +127,7 @@ const Portfolio = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-gradient">
               Nossos Projetos
             </span>
           </h2>
@@ -146,11 +148,10 @@ const Portfolio = () => {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                selectedCategory === category
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30'
-                  : 'bg-slate-800/50 text-gray-400 hover:bg-slate-800 hover:text-white border border-slate-700/50'
-              }`}
+              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${selectedCategory === category
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30'
+                : 'bg-slate-800/50 text-gray-400 hover:bg-slate-800 hover:text-white border border-slate-700/50'
+                }`}
             >
               {category}
             </button>
@@ -175,7 +176,7 @@ const Portfolio = () => {
                 onClick={() => setSelectedProject(project)}
                 className="group cursor-pointer"
               >
-                <div className="relative h-full bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/20">
+                <SpotlightCard className="h-full bg-slate-900/50 backdrop-blur-sm border-slate-800/50 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300">
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img
@@ -186,7 +187,7 @@ const Portfolio = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
 
                     {/* Category Badge */}
-                    <div className="absolute top-4 right-4">
+                    <div className="absolute top-4 right-4 z-10">
                       <span className="px-3 py-1 bg-cyan-500/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
                         {project.category}
                       </span>
@@ -201,29 +202,8 @@ const Portfolio = () => {
                     <p className="text-gray-400 text-sm mb-4 line-clamp-2">
                       {project.description}
                     </p>
-
-                    {/* Tags */}
-                    {/* <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.slice(0, 3).map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-1 text-xs bg-slate-800/50 text-cyan-400 rounded-md border border-slate-700/50"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div> */}
-
-                    {/* Footer */}
-                    {/* <div className="flex items-center justify-between text-xs text-gray-500">
-                      <span>{project.client}</span>
-                      <span>{project.date}</span>
-                    </div> */}
                   </div>
-
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                </div>
+                </SpotlightCard>
               </motion.div>
             ))}
           </AnimatePresence>

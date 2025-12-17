@@ -22,6 +22,8 @@ const CookieConsent = lazy(() => import("./components/CookieConsent"));
 const Footer = lazy(() => import("./components/Footer"));
 
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import ScrollProgress from "./components/ui/ScrollProgress";
+import BackToTop from "./components/ui/BackToTop";
 
 function App() {
   // Ensure dark mode is active
@@ -32,6 +34,7 @@ function App() {
   return (
     <ErrorBoundary>
       <div className="bg-slate-950 min-h-screen">
+        <ScrollProgress />
         <GoogleAnalytics />
         <Header />
         <main>
@@ -56,6 +59,7 @@ function App() {
           </Suspense>
         </main>
 
+        <BackToTop />
         <Suspense fallback={null}>
           <Footer />
           <WhatsAppWidget />
