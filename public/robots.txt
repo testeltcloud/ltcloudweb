@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ltcloud.com.br/sitemap.xml

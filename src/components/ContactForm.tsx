@@ -52,7 +52,7 @@ const ContactForm = () => {
           'Accept': 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY', // Obtenha gratuitamente em https://web3forms.com
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY', // Use env var or fallback for dev
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
