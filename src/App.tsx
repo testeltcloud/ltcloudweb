@@ -1,79 +1,46 @@
-import { Suspense, lazy, useEffect } from "react";
-
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import { Segments } from "./components/Segments";
-import Services from "./components/Services";
-import { Loader } from "./components/Loader";
-import ErrorBoundary from "./components/ErrorBoundary";
-
-// Lazy load components below the fold
-const WhatWeDevelop = lazy(() => import("./components/WhatWeDevelop"));
-const IndustrySegments = lazy(() => import("./components/IndustrySegments"));
-const Portfolio = lazy(() => import("./components/Portfolio"));
-const HowItWorks = lazy(() => import("./components/HowItWorks"));
-const ClientLogos = lazy(() => import("./components/ClientLogos"));
-const About = lazy(() => import("./components/About"));
-const Timeline = lazy(() => import("./components/Timeline"));
-const Testimonials = lazy(() => import("./components/Testimonials"));
-const ContactForm = lazy(() => import("./components/ContactForm"));
-const WhatsAppWidget = lazy(() => import("./components/WhatsAppWidget"));
-const CookieConsent = lazy(() => import("./components/CookieConsent"));
-const Footer = lazy(() => import("./components/Footer"));
-const Team = lazy(() => import("./components/Team"));
-const CompanyAbout = lazy(() => import("./components/CompanyAbout"));
-
-import GoogleAnalytics from "./components/GoogleAnalytics";
-import ScrollProgress from "./components/ui/ScrollProgress";
-import BackToTop from "./components/ui/BackToTop";
-import SkipToContent from "./components/ui/SkipToContent";
+import React from 'react';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import Hero from './components/sections/Hero';
+import Services from './components/sections/Services';
+import WhatWeDevelop from './components/sections/WhatWeDevelop';
+import IndustrySegments from './components/sections/IndustrySegments';
+import HowItWorks from './components/sections/HowItWorks';
+import Team from './components/sections/Team';
+import ClientLogos from './components/sections/ClientLogos';
+import PromoBanner from './components/sections/PromoBanner';
+import FAQ from './components/sections/FAQ';
+import ContactForm from './components/sections/ContactForm';
+import { useScrollReveal } from './hooks/useScrollReveal';
 
 function App() {
-  // Ensure dark mode is active
-  useEffect(() => {
-    document.documentElement.classList.add('dark');
-  }, []);
+    useScrollReveal();
 
-  return (
-    <ErrorBoundary>
-      <SkipToContent />
-      <div className="bg-slate-950 min-h-screen">
-        <ScrollProgress />
-        <GoogleAnalytics />
-        <Header />
-        <main id="main">
-          <Hero />
-          <Segments />
-          <Services />
+    return (
+        <div className="relative min-h-screen bg-slate-950 font-sans text-slate-50 selection:bg-blue-500/30">
+            <Header />
 
-          <Suspense fallback={
-            <div className="flex items-center justify-center py-20">
-              <Loader />
+            <main>
+                <Hero />
+                <ClientLogos />
+                <PromoBanner />
+                <Services />
+                <WhatWeDevelop />
+                <IndustrySegments />
+                <HowItWorks />
+                <Team />
+                <FAQ />
+                <ContactForm />
+            </main>
+
+            <Footer />
+
+            {/* Global Abstract Background */}
+            <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-[1] pointer-events-none">
+                {/* Dynamic background effects can go here if needed globally */}
             </div>
-          }>
-            <WhatWeDevelop />
-            <IndustrySegments />
-            <Portfolio />
-            <HowItWorks />
-            <ClientLogos />
-            <CompanyAbout />
-            <Team />
-            <About />
-            <Timeline />
-            <Testimonials />
-            <ContactForm />
-          </Suspense>
-        </main>
-
-        <BackToTop />
-        <Suspense fallback={null}>
-          <Footer />
-          <WhatsAppWidget />
-          <CookieConsent />
-        </Suspense>
-      </div>
-    </ErrorBoundary>
-  );
+        </div>
+    );
 }
 
 export default App;

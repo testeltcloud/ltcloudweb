@@ -10,7 +10,7 @@ const ClientLogos = () => {
   // Logos de empresas conhecidas como placeholder
   // Você pode substituir por logos reais dos seus clientes
   const clients = [
-    { name: 'todagente Telemedicina', logo: 'https://todagentetelemedicina.com/wp-content/uploads/2025/05/TODAGENTE-LOGO-branco-a-claro-1536x547.png' },
+    { name: 'todagente Telemedicina', logo: 'https://api.todagentesaude.com/images/todagente/clinic/clinicLogo1729186149170.png' },
     { name: 'AiLine Telemedicina', logo: 'https://api.ailine.com.br/images/clinic/clinicLogo1718834165418.png' },
     { name: 'Ceo Food', logo: 'https://www.ceofood.com.br/assets2/image/logoCeoFood.svg' },
     { name: 'Ceo PAg', logo: 'https://ceopag.com.br/novaspaginas/institucional/_astro/logo.CNN8ZffI.png' },
