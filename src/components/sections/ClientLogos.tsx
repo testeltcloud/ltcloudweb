@@ -1,5 +1,5 @@
 // import React from 'react';
-
+// novo
 const clients = [
     { name: 'todagente Telemedicina', logo: 'https://api.todagentesaude.com/images/todagente/clinic/clinicLogo1729186149170.png' },
     { name: 'AiLine Telemedicina', logo: 'https://api.ailine.com.br/images/clinic/clinicLogo1718834165418.png' },
