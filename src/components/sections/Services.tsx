@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Server, Monitor, Cloud, Settings, Zap, Smartphone } from 'lucide-react';
 
 const services = [

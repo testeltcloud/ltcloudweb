@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 
 const clients = [
     { name: 'todagente Telemedicina', logo: 'https://api.todagentesaude.com/images/todagente/clinic/clinicLogo1729186149170.png' },

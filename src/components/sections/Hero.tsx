@@ -1,12 +1,21 @@
-import React from 'react';
+import { Suspense, lazy } from 'react';
 import { ArrowRight } from 'lucide-react';
+
+// Lazy load the 3D scene for better performance
+const GlobeScene = lazy(() => import('../ui/GlobeScene'));
 
 const Hero = () => {
     return (
         <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-            {/* Background Elements - Pure CSS for Performance */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-slate-700/20 rounded-full blur-[100px] pointer-events-none" />
+            {/* 3D Globe Background */}
+            <Suspense fallback={
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" />
+            }>
+                <GlobeScene />
+            </Suspense>
+
+            {/* Gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-transparent to-slate-950 pointer-events-none z-[1]" />
 
             <div className="container mx-auto px-4 z-10 text-center">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 animate-float">
